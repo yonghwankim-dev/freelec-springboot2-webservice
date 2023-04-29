@@ -45,4 +45,5 @@ echo "> JAR Name: $JAR_NAME"
 
 nohup java -jar \
   -Dspring.config.location=classpath:/application.properties,$REPOSITORY/application-oauth.properties \
+  -Dserver.port=8081 \
   $REPOSITORY/$JAR_NAME 2>&1 &
