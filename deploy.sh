@@ -44,6 +44,8 @@ JAR_NAME=$(ls -tr $REPOSITORY/ | grep jar | tail -n 1)
 echo "> JAR Name: $JAR_NAME"
 
 nohup java -jar \
-  -Dspring.config.location=classpath:/application.properties,$REPOSITORY/application-oauth.properties \
+  -Dspring.config.location=classpath:/application.properties,$REPOSITORY/application-oauth.properties, \
+  $REPOSITORY/application-real-db.properties, $REPOSITORY/application-real.properties \
+  -Dspring.profiles.active=real \
   -Dserver.port=8081 \
   $REPOSITORY/$JAR_NAME 2>&1 &
