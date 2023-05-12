@@ -39,6 +39,8 @@ deploy:
     local_dir: deploy # before_deploy에서 생성한 디렉토리
     # 해당 위치(deploy) 파일들만 S3로 전송합니다.
     wait-until-deployed: true
+    on:
+      all_branches: true # default 브랜치인 master 브랜치 외에도 다른 브랜치에도 배포 할수 있도록 하기
 
 # CI 실행 완료시 메일로 알람
 notifications:
