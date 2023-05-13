@@ -6,7 +6,7 @@ files:
   - source: /
     # CodeDeploy에서 전달해 준 파일 중 destination으로 이동시킬 대상을 지정합니다.
     # 루트 경로(/)를 지정하면 전체 파일을 이야기합니다.
-    destination: /home/ec2-user/app/step2/zip/
+    destination: /home/ec2-user/app/step3/zip/
     # source에서 지정된 파일을 받을 위치입니다.
     # 이후 Jar를 실행하는 등은 destination에서 옮긴 파일들로 진행됩니다.
     overwrite: yes
@@ -20,7 +20,16 @@ permissions:
 
 hooks:
   # 애플리케이션 배포 과정에서 다양한 단계에서 실행될 수 있는 작업들을 정의하는 섹션
-  ApplicationStart:
-    - location: deploy.sh
+  AfterInstall:
+    - location: stop.sh # nginx와 연결되어 있지 않은 스프링 부트를 종료합니다.
       timeout: 60
       runas: ec2-user
+  ApplicationStart:
+    - location: start.sh # nginx와 연결되어 있지 않은 Port로 새 버전의 스프링 부트를 시작합니다.
+      timeout: 60
+      runas: ec2-user
+  ValidateService:
+    - location: health.sh # 새 프링부트가 정상적으로 실행됬는지 확인합니다.
+      timeout: 60
+      runas: ec2-user
+
