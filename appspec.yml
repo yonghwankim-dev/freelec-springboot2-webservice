@@ -21,6 +21,6 @@ permissions:
 hooks:
   # 애플리케이션 배포 과정에서 다양한 단계에서 실행될 수 있는 작업들을 정의하는 섹션
   ApplicationStart:
-    - location: scripts/deploy.sh
+    - location: deploy.sh
       timeout: 60
       runas: ec2-user
