@@ -14,11 +14,9 @@ function switch_proxy() {
   # > 기호를 사용하지 않은 이유는 권한 문제로 파일 쓰기가 실패할 수 있기 때문입니다.
 
   echo "> nginx Reload"
-  sudo service nginx start
   sudo service nginx reload
   # 엔진엑스 설정을 다시 불러옵니다.
   # restart와는 다릅니다. restart는 잠시 끊기는 현상이 있지만, reload는 끊김 없이 다시 불러옵니다.
   # 단, 중요한 설정들은 반영되지 않으므로 restart를 해야 합니다.
   # 여기선 외부의 설정 파일인 service-url을 다시 불러오는거라 reload로 가능합니다.
-
 }
